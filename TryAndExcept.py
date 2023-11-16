@@ -22,6 +22,10 @@ class Mahasiswa(Person):
         if not (self.nim.isdigit() and len(self.nim) == 9):
             raise ValueError("NIM harus terdiri dari 9 digit angka.")
         return True
+        
+    def cetak(self):
+        print("Data Mahasiswa")
+        print(f"Nama : {self.nama} \nNim : {self.nim} \nNoHp : {self.no_hp}\n")
 
 class Dosen(Person):
     def __init__(self, nip, nama, no_hp):
@@ -32,18 +36,24 @@ class Dosen(Person):
         if not (self.nip.isdigit() and len(self.nip) == 9):
             raise ValueError("NIP harus terdiri dari 9 digit angka.")
         return True
+        
+    def cetak(self):
+        print("Data Dosen")
+        print(f"Nama : {self.nama} \nNim : {self.nip} \nNoHp : {self.no_hp}")
 
 # Contoh penggunaan:
 try:
-    mahasiswa = Mahasiswa('123456799', 'John Doe', '+123456789')
+    mahasiswa = Mahasiswa('123456799', 'Michael Sitanggang', '+123456789')
     mahasiswa.validate_nim()
     mahasiswa.validate_nama()
     mahasiswa.validate_no_hp()
+    mahasiswa.cetak()
 
-    dosen = Dosen('987654321', 'Jane Smith', '987654321')
+    dosen = Dosen('987654321', 'Jane Smith', '+987654321')
     dosen.validate_nip()
     dosen.validate_nama()
     dosen.validate_no_hp()
+    dosen.cetak()
 
     print("Data Mahasiswa dan Dosen valid.")
 except ZeroDivisionError as e:
