@@ -16,20 +16,20 @@ class Michael:
                 return
         self.dt.append(mhs)
         print(mhs.nama, "Berhasil ditambahkan !")
-    def urut(self):
-        self.dt = sorted(self.dt, key=lambda x:int(x.nim))
-    #Pakai Algoritma
-    # def urut2(self):
-    #     jlh = len(self.dt)
-    #     for i in range(jlh-1):
-    #         min = i
-    #         for j in range(i+1, jlh):
-    #             if(self.dt[j].nim < self.dt[i].nim):
-    #                 min = j
-    #         if(min!=i):
-    #             tmp = self.dt[min]
-    #             self.dt[min]=self.dt[i]
-    #             self.dt[i] = tmp
+    # def urut(self):
+    #     self.dt = sorted(self.dt, key=lambda x:int(x.nim))
+    def BubleSort(self):
+        n = len(self.dt)
+        for i in range(n):
+            hasil = False
+            for j in range(0, n-i-1):
+                if self.dt[j].nim > self.dt[j+1].nim:
+                    self.dt[j], self.dt[j+1]= self.dt[j+1], self.dt[j]
+                    hasil = True
+
+            if not hasil :
+                break
+    
     def absen(self, nim):
         for m in self.dt:
             if(nim == m.nim):
@@ -38,7 +38,7 @@ class Michael:
             elif(m.nim == self.dt[len(self.dt)-1].nim):
                 print("Mahasiswa dengan NIM", "("+nim+") Tidak Hadir")
     def cetak(self):
-        self.urut()
+        self.BubleSort()
         print("\nDaftar Seluruh Siswa")
         print("=====================")
         for mhs in self.dt:
@@ -57,7 +57,7 @@ def menu():
             d3 = input("HP\t: ")
             mTmp = Mahasiswa(d1,d2,d3)
             mhs.tambah(mTmp)
-            mhs.urut()
+            mhs.BubleSort()
             input("Tekan Enter untuk lanjut !")
         elif(mn=="2"):
             e1 = input("NIM\t: ")
@@ -74,6 +74,3 @@ def menu():
 
 mhs = Michael()
 menu()
-
-
-
